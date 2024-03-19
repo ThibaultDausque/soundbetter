@@ -1,0 +1,70 @@
+version: "3.8"
+
+
+services:
+
+  frontend:
+    container_name: frontend
+    image: frontend:latest
+    restart: unless-stopped
+    build:
+      context: ./my-app
+    ports:
+      - 4200:4200
+    volumes:
+      - ./my-app/src:/app/src
+      - /app/node_modules
+    command: "ng serve"
+    depends_on:
+      - postgresdb
+    
+  backend:
+    container_name: backend
+    image: backend:latest
+    restart: unless-stopped
+    build: ./backend
+    ports:
+      - 3000:3000
+    environment:
+      - DB_HOST=postgresdb
+      - DB_USER=myuser
+      - DB_PASSWORD=mypassword
+      - DB_NAME=mydb
+      - DB_PORT=5432
+    stdin_open: true
+    tty: true
+    volumes:
+      - .m2:/root/.m2
+      - ./backend/src/:/app/src/
+
+
+  postgresdb:
+    container_name: postgres_drive
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=my_database
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+
+  adminer:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=adminpassword
+    ports:
+      - "8081:80"
+    depends_on:
+      - postgresdb
+  
+    
+volumes:
+  db:
+    
+
