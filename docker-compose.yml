@@ -7,35 +7,30 @@ services:
     container_name: frontend
     image: frontend:latest
     restart: unless-stopped
-    build:
-      context: ./my-app
+    build: .
     ports:
-      - 4200:4200
+      - "4200:4200"
+    environment:
+      - STYLE=css
     volumes:
-      - ./my-app/src:/app/src
+      - ./front/src/:/angular-app
       - /app/node_modules
-    command: "ng serve"
-    depends_on:
-      - postgresdb
-    
+    command: ng serve
+
   backend:
     container_name: backend
     image: backend:latest
-    restart: unless-stopped
+    depends_on:
+      - postgresdb
     build: ./backend
+    restart: unless-stopped
     ports:
-      - 3000:3000
-    environment:
-      - DB_HOST=postgresdb
-      - DB_USER=myuser
-      - DB_PASSWORD=mypassword
-      - DB_NAME=mydb
-      - DB_PORT=5432
-    stdin_open: true
-    tty: true
+      - "3000:8080"
     volumes:
       - .m2:/root/.m2
-      - ./backend/src/:/app/src/
+      - ./backend:/app
+    stdin_open: true
+    tty: true
 
 
   postgresdb:
