@@ -7,7 +7,7 @@ services:
     container_name: frontend
     image: frontend:latest
     restart: unless-stopped
-    build: .
+    build: ./front
     ports:
       - "4200:4200"
     environment:
@@ -17,20 +17,21 @@ services:
       - /app/node_modules
     command: ng serve
 
-  backend:
-    container_name: backend
-    image: backend:latest
-    depends_on:
-      - postgresdb
-    build: ./backend
-    restart: unless-stopped
-    ports:
-      - "3000:8080"
-    volumes:
-      - .m2:/root/.m2
-      - ./backend:/app
-    stdin_open: true
-    tty: true
+  # backend:
+  #   container_name: backend
+  #   platform: linux/x86_64
+  #   image: backend:latest
+  #   depends_on:
+  #     - postgresdb
+  #   build: ./backend
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3000:8080"
+  #   volumes:
+  #     - .m2:/root/.m2
+  #     - ./backend:/app
+  #   stdin_open: true
+  #   tty: true
 
 
   postgresdb:
@@ -38,7 +39,7 @@ services:
     image: postgres:latest
     restart: unless-stopped
     volumes:
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/:/docker-entrypoint-initdb.d/
       - db:/var/lib/postgresql/data
     ports:
       - "5433:5432"

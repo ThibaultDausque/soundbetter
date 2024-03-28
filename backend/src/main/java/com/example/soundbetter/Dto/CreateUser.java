@@ -4,25 +4,25 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class CreateUser {
+
+    
     @NotBlank
     @Size(max = 50)
-    private String mail;
+    private String email;
 
     @NotBlank
     @Size(max =50)
     private String password;
 
-
-
     public CreateUser() { 
     }
 
     public String getUserMail() {
-        return mail;
+        return email;
     }
 
-    public void setUserMail(String user) {
-        this.mail = mail;
+    public void setUserMail(String email) {
+        this.email = email;
     }
 
     public String getUserPassword() {

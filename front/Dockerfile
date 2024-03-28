@@ -1,9 +1,8 @@
 # Stage 1: Build the Angular application
 FROM node:lts
-WORKDIR /app
-COPY package.json package-lock.json ./
+WORKDIR /usr/src/app
+COPY . /usr/src/app
 RUN npm install
 RUN npm install -g @angular/cli
-COPY . .
 EXPOSE 4200
-CMD ["ng", "serve"]
+CMD ["ng", "serve", "--host", "0.0.0.0"]

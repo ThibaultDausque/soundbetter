@@ -12,7 +12,7 @@ import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/commo
 export class LoginService {
 
   constructor(private http: HttpClient) { }
-  url = "http://localhost:3000/user";
+  url = "http://localhost:8080/user";
   getUser() {
     return this.http.get<User>(this.url);
   }
