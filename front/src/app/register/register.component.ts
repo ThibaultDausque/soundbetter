@@ -15,24 +15,35 @@ import { FormsModule } from '@angular/forms';
 
 export class RegisterComponent {
   email = '';
-  pseudo = '';
+  username = '';
   password = '';
   confirmPassword = '';
+  creationDate = new Date();
+
 
 
   register: Register[] = [];
   constructor(private registerService: RegisterService) { }
 
+
+
   onSubmit() {
-    console.log(this.email, this.pseudo, this.password);
-    this.registerService
-        .addRegister({
-          email: this.email,
-          pseudo: this.pseudo,
-          password: this.password,
-          confirmPassword: this.confirmPassword
-        })
-        .subscribe(reg => this.register.push(reg))
+
+    if(this.password != this.confirmPassword) {
+
+      alert("don't match with your password !")
+
+    } else {
+      console.log(this.email, this.username, this.password, this.creationDate);
+      this.registerService
+          .addRegister({
+            email: this.email,
+            username: this.username,
+            password: this.password,
+            creationDate: this.creationDate,
+          })
+          .subscribe(reg => this.register.push(reg))
+    }
   }
 
 }

@@ -1,6 +1,5 @@
 version: "3.8"
 
-
 services:
 
   frontend:
@@ -19,19 +18,17 @@ services:
 
   backend:
     container_name: backend
-    platform: linux/x86_64
     image: backend:latest
     depends_on:
       - postgresdb
     build: ./backend
-    restart: unless-stopped
+    command: "npm run start:dev"
     ports:
       - "3000:3000"
     volumes:
-      -  ./backend:/app
+      -  ./backend:/app/src 
     stdin_open: true
     tty: true
-
 
   postgresdb:
     container_name: postgres_drive
@@ -57,8 +54,7 @@ services:
       - "8081:80"
     depends_on:
       - postgresdb
-  
-    
+   
 volumes:
   db:
     
