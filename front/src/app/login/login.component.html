@@ -1,19 +1,20 @@
-
 <div id="header">
-    <h4>SOUNDBETTER</h4>
+    <h3>SOUNDBETTER</h3>
 
-    <div class="logElement">
-        <a href="login">Login</a>
-        <a href="register">Register</a>
+</div>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="login">
+
+        <input type="email" id="email" placeholder="Your email" formControlName="email" required>
+        <div *ngIf="email!.invalid && (email?.dirty || email?.touched)" class="alert alert-danger">
+            <div *ngIf="email?.errors?.['required']" id="email_required">Email is required</div>
+            <div *ngIf="email?.errors?.['pattern']" id="email_incorrect">Email is incorrect</div>
+        </div>
+        <br>
+        <input type="password" id="password" placeholder="Your password"/>
+        <br>
+        <input type="button" value="Login" id="button"/>
+
     </div>
-</div>
-
-<div class="login">
-
-    <input type="email" id="mail" placeholder="Your mail"/>
-    <br>
-    <input type="password" id="password" placeholder="Your password"/>
-    <br>
-    <input type="button" value="Login" id="button"/>
-
-</div>
+</form>

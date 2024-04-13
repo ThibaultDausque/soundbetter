@@ -7,6 +7,7 @@ import { catchError } from 'rxjs/operators';
 import { urlToHttpOptions } from "url";
 import { error } from "console";
 import { register } from "module";
+import { Token } from "@angular/compiler";
 
 
 @Injectable({
@@ -30,7 +31,11 @@ export class RegisterService {
 
 
     addRegister(register: Register): Observable<Register> {
-        const headers = { 'content-type': 'application/json'}
+        const headers = new HttpHeaders ({ 
+            'content-type': 'application/json',
+            'Accept': 'application/json',
+        });
+        
         const body = JSON.stringify(register);
         console.log(body);
         return this.http.post<Register>(this.baseURL + 'register', body, {'headers': headers})

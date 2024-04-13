@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
-    font-family: "Raleway", sans-serif;
+    font-family: "Work Sans", sans-serif;
 }
 
 
@@ -15,10 +15,10 @@
     border-radius: 10px;
 }
 
-h4 {
+h3 {
     position: relative;
     left: 50px;
-    color: #715aff;
+    color: #ffffff;
 }
 
 p {
@@ -27,31 +27,12 @@ p {
 
 
 
-
-.logElement{
-    display: grid;
-    grid-template-columns: 0fr 1fr 1fr;
-    gap: 10px 2em;
-    float: right;
-    position: relative;
-
-}
-
-.logElement > *{
-    border: solid 2px #102E4A;
-    height: 30px;
-    width: 80px;
-    display: grid;
-    justify-items: center; /* align horizontal */
-    align-items: center;
-    cursor: pointer;
-}
-
-.login > * {
+.login > input {
     width: 200px;
     border: solid 2px #102E4A;
     height: 30px;
     width: 300px;
+    margin-top: 20px;
 
 
 }
@@ -62,13 +43,28 @@ p {
     align-items: center;
     border: none;
     position: relative;
-    top: 200px;
+    top: 100px;
+    background-color: rgb(255, 255, 255);
+    width: 500px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+
 
 }
 
 #button{
-    background-color: #715aff;
+    background-color: #a1a1a1;
     color: #102E4A;
     font-weight: 700;
     cursor: pointer;
+}
+
+#email_required {
+    color: red;
+}
+
+#email_incorrect {
+    color: red;
 }
