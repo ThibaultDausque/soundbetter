@@ -3,6 +3,8 @@ import { LoginService } from './login.service';
 import { Login } from './login';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
     ngOnInit(): void {
@@ -27,8 +30,8 @@ export class LoginComponent implements OnInit {
           Validators.required,
           Validators.minLength(4),
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
-        ])
-
+        ]),
+        password: new FormControl(""),
       })
     }
 
@@ -36,17 +39,20 @@ export class LoginComponent implements OnInit {
       return this.userForm.get('email');
     }
 
+    get password() {
+      return this.userForm.get('password');
+      
+    }
+
   onSubmit() {
     console.log(this.email);
-  }
-
-
-  showConfig() {
-    this.loginService.getUser()
-    .subscribe(data => this.login = {
-      email: data.email,
-      password: data.password
-    });
+    const formValue = this.userForm.value
+    if(this.userForm.valid){
+      this.router.navigate(['/home']);
+    }
+    this.loginService.postLogin(formValue.email, formValue.password).subscribe(response => {
+      console.log(response);
+    })
   }
 
 

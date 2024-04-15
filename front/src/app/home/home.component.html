@@ -40,10 +40,16 @@
     </div>
 </div>
 
-<div class="user">
-    <a href="login">SignIn</a>
-    <a href="register">Register</a>
+<div *ngIf="!isLoggedin; else userMenu">
+    <div class="user">
+        <a href="login">SignIn</a>
+        <a href="register">Register</a>
+    </div>
 </div>
+
+<ng-template #userMenu>
+    <div>Welcome, {{username}}</div>
+</ng-template>
 
 <div id="cover">
     <i class='bx bxs-music bx-lg' style='color:#ffffff'  ></i>

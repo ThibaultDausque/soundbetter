@@ -12,9 +12,9 @@
             <div *ngIf="email?.errors?.['pattern']" id="email_incorrect">Email is incorrect</div>
         </div>
         <br>
-        <input type="password" id="password" placeholder="Your password"/>
+        <input type="password" id="password" formControlName="password" placeholder="Your password"/>
         <br>
-        <input type="button" value="Login" id="button"/>
+        <input type="submit" value="Login" id="button" />
 
     </div>
 </form>
