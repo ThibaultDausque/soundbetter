@@ -30,8 +30,7 @@ export class LoginService {
   postLogin(email: string, password: string) {
     const headers = new HttpHeaders ({ 
       'content-type': 'application/json',
-      'Accept': 'application/json',
-  });
+    });
 
     const response = this.http.post<Login>(this.url, JSON.stringify({ email, password }), {'headers': headers, withCredentials: true}).pipe(
       catchError(this.handleError)

@@ -3,15 +3,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 
+<h3>SOUNDBETTER</h3>
+
 <div class="side_bar">
-    <h3>SOUNDBETTER</h3>
 
     <div class="menu">
         <p>MENU</p>
         <ul id="menu">
             <li>
                 <i class='bx bxs-music' style='color:#ffffff'  ></i>
-                <a href="#">Titres</a>
+                <a href="music">Titles</a>
             </li>
             <li>
                 <i class='bx bxs-album' style='color:#ffffff' ></i>
@@ -21,7 +22,6 @@
                 <i class='bx bxs-playlist' style='color:#ffffff' ></i>
                 <a href="#">Playlists</a>
             </li>
-
         </ul>
     </div>
 
@@ -29,7 +29,7 @@
         <p>PLAYLIST</p>
         <ul id="playlistMenu">
             <li>
-                <i class='bx bx-plus'></i>
+                <i class='bx bx-plus' style='color:#ffffff'></i>
                 <a href="#">Create new</a>
             </li>
             <li>
@@ -38,28 +38,24 @@
             </li>
         </ul>
     </div>
-</div>
 
-<div *ngIf="!isLoggedin; else userMenu">
     <div class="user">
         <a href="login">SignIn</a>
         <a href="register">Register</a>
     </div>
 </div>
 
-<ng-template #userMenu>
-    <div>Welcome, {{username}}</div>
-</ng-template>
-
-<div id="cover">
-    <i class='bx bxs-music bx-lg' style='color:#ffffff'  ></i>
+<div class="musicList">
+       
 </div>
 
+
 <div class="display">
-
-    <i class="fa-solid fa-backward" title="Previous" id="prev"></i>
-    <i class="fa-solid fa-play play-button" title="Play" id="play"></i>
-    <i class="fa-solid fa-forward" title="Next" id="next"></i>
-
-    <div id="progress"></div>
+    <h3>titre</h3>
+    <div class="progress"></div>
+     <div id="elements">
+        <i class="fa-solid fa-backward"></i>
+        <i class="fa-solid fa-play" id="play" [ngClass]="{'fa-play': !isPlaying, 'fa-pause': isPlaying}" (click)="togglePlay()"></i>
+        <i class="fa-solid fa-forward"></i>
+    </div>
 </div>

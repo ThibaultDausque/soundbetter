@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 body {
-    background-color: black;
+    background-color: #4158D0;
+    background-image: linear-gradient(to right, #4158D0 , #C850C0 , #FFCC70 );
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
 }

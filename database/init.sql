@@ -6,7 +6,7 @@ CREATE TABLE users (
         username VARCHAR(50) UNIQUE NOT NULL,
         creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         email VARCHAR(50) UNIQUE NOT NULL,
-        password VARCHAR(50) NOT NULL, -- attention hash
+        password VARCHAR(62) NOT NULL, -- attention hash
         CONSTRAINT users_pk PRIMARY KEY (id)
 );
 
@@ -33,7 +33,7 @@ CREATE TABLE musics (
         CONSTRAINT musics_pk PRIMARY KEY (id),
         CONSTRAINT music_user_fk
                 FOREIGN KEY (user_id)
-                REFERENCES user(id),
+                REFERENCES users(id),
         CONSTRAINT music_album_id_fk 
                 FOREIGN KEY (album_id)
                 REFERENCES albums(id)

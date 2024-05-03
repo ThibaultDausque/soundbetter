@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
+import { MusicComponent } from './music/music.component';
 
 
 
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
     PageNotFoundComponent,
     LoginComponent,
     RegisterComponent,
+    MusicComponent,
   ],
   imports: [
     CommonModule,

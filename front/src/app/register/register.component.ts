@@ -17,6 +17,8 @@ import { CommonModule } from '@angular/common';
 
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
+  StrongPasswordRegx: RegExp =
+  /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
 
   creationDate = new Date();
   success = false;
@@ -36,8 +38,16 @@ export class RegisterComponent implements OnInit {
         Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
       ]),
       username: "",
-      password: "",
-      confirmPassword: "",
+      password: new FormControl("", [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern(this.StrongPasswordRegx),
+      ]),
+      confirmPassword: new FormControl("", [
+        Validators.required,
+        Validators.minLength(8),
+
+      ]),
       Date: new Date()
     })
   }
@@ -59,7 +69,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.form.valid) {
+    if (this.form.valid) {
 
       this.registerService.addRegister(this.form.value).subscribe(response => {
         console.log(response);

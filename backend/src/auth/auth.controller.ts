@@ -10,10 +10,15 @@ import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { Public } from './public_strategy';
 import { LoginDto } from './dto/login.dto';
+import { UserService } from 'src/user/user.service';
+import { createUserDto } from 'src/user/dto/user.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+  ) {}
 
   @Public()
   @HttpCode(HttpStatus.OK)
@@ -38,5 +43,10 @@ export class AuthController {
     return {
       success: true,
     };
+  }
+
+  @Post('register')
+  addUser(@Body() user: createUserDto) {
+    return this.authService.register(user);
   }
 }

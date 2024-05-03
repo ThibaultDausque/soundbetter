@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Work Sans", sans-serif;
+}
+
+h3 {
+    color: white;
+    text-align: center;
+}
+
+.display {
+    position: fixed;
+    bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    width: 500px;
+    height: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.fa-solid {
+    margin: 10px;
+
+}
+
+.display>* {
+    color: black;
+}
+
+.progress {
+    position: relative;
+    width: 400px;
+    height: 5px;
+    background-color: grey;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 5px;
+    bottom: 10px;
+}
+
+#elements {
+    position: relative;
+    bottom: 10px;
+}
+
+img {
+    position: relative;
+    width: 200px;
+    margin: 20px;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+}
+
+#music_list {
+    position: relative;
+    text-align: center;
+}
+
+img:hover {
+    cursor: pointer;
+    width: 210px;
+
+}
+
+@media screen and (max-width: 390px) {
+
+    .display {
+        position: fixed;
+        bottom: 20px;
+        background-color: white;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+        height: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .fa-solid {
+        margin: 10px;
+        font-size: 1.5em;
+
+    }
+
+    .display>* {
+        color: black;
+    }
+
+    .progress {
+        position: relative;
+        width: 200px;
+        height: 5px;
+        background-color: grey;
+        margin-right: auto;
+        margin-left: auto;
+        border-radius: 5px;
+        bottom: 10px;
+    }
+
+    #elements {
+        position: relative;
+        bottom: 10px;
+    }
+}

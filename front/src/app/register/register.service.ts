@@ -38,7 +38,7 @@ export class RegisterService {
         
         const body = JSON.stringify(register);
         console.log(body);
-        return this.http.post<Register>(this.baseURL + 'register', body, {'headers': headers})
+        return this.http.post<Register>(this.baseURL + 'auth/register', body, {'headers': headers})
             .pipe(
                 catchError(this.handleError)
             );

@@ -24,35 +24,37 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
-    ngOnInit(): void {
-      this.userForm = this.formBuilder.group({
-        email: new FormControl("", [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
-        ]),
-        password: new FormControl(""),
-      })
-    }
+  ngOnInit(): void {
+    this.userForm = this.formBuilder.group({
+      email: new FormControl("", [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
+      ]),
+      password: new FormControl(""),
+    })
+  }
 
-    get email() {
-      return this.userForm.get('email');
-    }
+  get email() {
+    return this.userForm.get('email');
+  }
 
-    get password() {
-      return this.userForm.get('password');
-      
-    }
+  get password() {
+    return this.userForm.get('password');
+
+  }
 
   onSubmit() {
     console.log(this.email);
     const formValue = this.userForm.value
-    if(this.userForm.valid){
-      this.router.navigate(['/home']);
-    }
-    this.loginService.postLogin(formValue.email, formValue.password).subscribe(response => {
-      console.log(response);
-    })
+
+    this.loginService.postLogin(formValue.email, formValue.password).subscribe(response => ({
+      next: (response: any) => {
+        alert('Login successful');
+        this.router.navigate(['/home']);
+      }
+
+    }));
   }
 
 

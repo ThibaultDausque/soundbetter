@@ -1,0 +1,25 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<h3>TITLES</h3>
+<ul>
+    <li *ngFor="let music of musics">{{music}}</li>
+</ul>
+
+<div id="music_list">
+    <img src="/assets/music/Levitate/levitate.jpg">
+    <img src="/assets/music/Trapnanana/trapnanana.jpg">
+</div>
+
+<div class="display">
+    <h3>title</h3>
+    <div class="progress"></div>
+     <div id="elements">
+        <i class="fa-solid fa-backward"></i>
+        <i class="fa-solid fa-play" id="play" [ngClass]="{'fa-play': !isPlaying, 'fa-pause': isPlaying}" (click)="togglePlay()"></i>
+        <i class="fa-solid fa-forward"></i>
+    </div>
+</div>
+
+
+

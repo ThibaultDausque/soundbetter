@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 * {
     font-family: "Work Sans", sans-serif;
 }
-
-
-
 
 
 #header {
@@ -72,3 +70,8 @@ p {
     color: red;
 }
 
+@media screen and (max-width: 390px) {
+    .login {
+        width: 400px;
+    }
+}

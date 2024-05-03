@@ -19,13 +19,6 @@ import { UserModule } from 'src/user/user.module';
     TypeOrmModule.forFeature([User]),
   ],
   controllers: [AuthController],
-  providers: [
-    // {
-    //   // provide: APP_GUARD,
-    //   useClass: AuthGuard,
-    // },
-    AuthService,
-    UserService,
-  ],
+  providers: [AuthService, UserService],
 })
 export class AuthModule {}
