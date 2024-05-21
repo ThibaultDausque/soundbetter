@@ -1,6 +1,8 @@
+import { Playlist } from 'src/playlist/entities/playlist.entity';
 import {
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -21,4 +23,7 @@ export class User {
 
   @Column({ length: 62 })
   password: string;
+
+  @OneToMany(() => Playlist, (playlist) => playlist.user)
+  playlists: Playlist[];
 }

@@ -4,6 +4,7 @@ import { Login } from './login';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { error } from 'console';
 
 
 @Component({
@@ -45,16 +46,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.email);
     const formValue = this.userForm.value
 
-    this.loginService.postLogin(formValue.email, formValue.password).subscribe(response => ({
-      next: (response: any) => {
+    this.loginService.postLogin(formValue.email, formValue.password).subscribe({
+      next: () => {
         alert('Login successful');
         this.router.navigate(['/home']);
+      },
+      error: () => {
+        alert('login problem');
       }
 
-    }));
+    });
   }
 
 

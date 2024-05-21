@@ -31,9 +31,6 @@ CREATE TABLE musics (
         album_id INT,
         user_id INT,
         CONSTRAINT musics_pk PRIMARY KEY (id),
-        CONSTRAINT music_user_fk
-                FOREIGN KEY (user_id)
-                REFERENCES users(id),
         CONSTRAINT music_album_id_fk 
                 FOREIGN KEY (album_id)
                 REFERENCES albums(id)
@@ -42,8 +39,8 @@ CREATE TABLE musics (
 CREATE TABLE playlists (
         id serial,
         playlist_title VARCHAR(50) UNIQUE NOT NULL,
-        post_date DATE NOT NULL,
-        cover VARCHAR(255) NOT NULL,
+        post_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        cover VARCHAR(255),
         users_id INT NOT NULL,
         CONSTRAINT playlist_pk PRIMARY KEY (id),
         CONSTRAINT playlist_user_fk 
@@ -56,10 +53,10 @@ CREATE TABLE musics_playlists (
         music_id INT REFERENCES musics(id),
         playlist_id INT REFERENCES playlists(id),
         PRIMARY key (music_id, playlist_id),
-        CONSTRAINT musics_playlists_music_title_fk
+        CONSTRAINT music_playlist_music_title_fk
                 FOREIGN KEY (music_id)
                 REFERENCES musics(id),
-        CONSTRAINT musics_playlists_playlist_title_fk
+        CONSTRAINT music_playlist_playlist_title_fk
                 FOREIGN KEY (playlist_id)
                 REFERENCES playlists(id)
 );

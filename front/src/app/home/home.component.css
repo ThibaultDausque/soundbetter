@@ -23,6 +23,9 @@ a {
   font-weight: 500;
 
 }
+a:hover {
+  cursor: pointer;
+}
 
 p {
   color: white;

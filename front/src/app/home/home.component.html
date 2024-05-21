@@ -1,6 +1,7 @@
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
 
 
 <h3>SOUNDBETTER</h3>
@@ -20,7 +21,7 @@
             </li>
             <li>
                 <i class='bx bxs-playlist' style='color:#ffffff' ></i>
-                <a href="#">Playlists</a>
+                <a href="playlist">Playlists</a>
             </li>
         </ul>
     </div>
@@ -30,7 +31,7 @@
         <ul id="playlistMenu">
             <li>
                 <i class='bx bx-plus' style='color:#ffffff'></i>
-                <a href="#">Create new</a>
+                <a (click)="openDialog()">Create new</a>
             </li>
             <li>
                 <i class='bx bx-star' style='color:#ffffff' ></i>
@@ -40,8 +41,13 @@
     </div>
 
     <div class="user">
-        <a href="login">SignIn</a>
-        <a href="register">Register</a>
+        <ng-template #showRegister>
+            <a href="login">SignIn</a>
+            <a href="register">Register</a>
+        </ng-template>
+        <div *ngIf="isLoggedin; else showRegister" (click)="logout()">
+            <a href="login">logout</a>
+        </div>
     </div>
 </div>
 

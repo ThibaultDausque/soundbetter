@@ -1,0 +1,5 @@
+<h3>Create a playlist</h3>
+<form [formGroup]="playlistForm">
+    <input type="text" id="title" placeholder="title" formControlName="playlistTitle"/>
+    <button (click)="onSubmit()">Submit</button>
+</form>

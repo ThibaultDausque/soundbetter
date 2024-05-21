@@ -11,14 +11,15 @@ import { MusicService } from './music.service';
 })
 export class MusicComponent {
   id!: number;
-  data!: any[];
-  musics: string[]=['ABC', 'DEF'];
+  titles!: string[];
 
-  constructor(private musicService: MusicService) {}
+  constructor(private musicService: MusicService) {
+    this.fetchMusic();
+  }
 
   fetchMusic() {
     this.musicService.getMusic().subscribe(data => {
-      this.data = data;
+      this.titles = data.map(((item: { musicTitle: string; }) => item.musicTitle));
     });
   }
 

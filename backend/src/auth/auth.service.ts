@@ -23,7 +23,7 @@ export class AuthService {
     const payload = { sub: user.id, email: user.email };
     const token = await this.jwtService.signAsync(payload);
 
-    return token;
+    return { token: token }; //return an object Token
   }
 
   async register(user: createUserDto) {
@@ -34,6 +34,7 @@ export class AuthService {
       password: hashedPassword,
       creationDate: user.creationDate,
       id: user.id,
+      playlists: [],
     };
     const User = await this.userService.createUser(newUser);
     return User;

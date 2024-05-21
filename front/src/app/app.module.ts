@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
 import { MusicComponent } from './music/music.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -20,6 +21,7 @@ import { MusicComponent } from './music/music.component';
     LoginComponent,
     RegisterComponent,
     MusicComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,8 @@ import { MusicComponent } from './music/music.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MatDialogModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

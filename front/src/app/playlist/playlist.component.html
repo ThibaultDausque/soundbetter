@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<h3>YOUR PLAYLISTS</h3>
+
+<div class="playlist_list">
+    <ul>
+        <li *ngFor="let playlist of playlists">
+            {{playlist}}
+            <hr>
+            <i class="fa-solid fa-pen" (click)="updateList()"></i>
+            <i class="fa-solid fa-trash" (click)="deleteList()"></i>
+        </li>
+    </ul>
+</div>

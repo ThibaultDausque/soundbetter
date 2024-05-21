@@ -1,0 +1,22 @@
+#title{
+    width: 200px;
+    position: relative;
+    left: 100px;
+
+
+}
+
+
+
+button {
+    position: relative;
+    top: 100px;
+    width: 200px;
+    left: 100px;
+}
+
+h3 {
+    position: relative;
+    top: 10px;
+    text-align: center;
+}

@@ -1,0 +1,32 @@
+li {
+    list-style-type: none;
+    width: 200px;
+    height: 100px;
+    background-color: aliceblue;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
+ul > * {
+    margin: 100px;
+}
+
+i {
+    position: relative;
+    margin: 30px;
+}
+
+i:hover {
+    cursor: pointer;
+
+}
+
+h3 {
+    text-align: center;
+    color: aliceblue;
+}

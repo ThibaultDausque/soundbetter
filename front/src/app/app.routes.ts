@@ -5,10 +5,13 @@ import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { MusicComponent } from './music/music.component';
+import { AuthGuard } from './login/authGuard';
+import { PlaylistComponent } from './playlist/playlist.component';
 
 
 export const routes: Routes = [
-    { path: 'music', component: MusicComponent },
+    { path: 'playlist', component: PlaylistComponent, canActivate: [AuthGuard] },
+    { path: 'music', component: MusicComponent, canActivate: [AuthGuard] },
     { path: 'home', component: HomeComponent },
     { path:'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },

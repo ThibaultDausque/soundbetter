@@ -1,15 +1,16 @@
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<h3>TITLES</h3>
-<ul>
-    <li *ngFor="let music of musics">{{music}}</li>
-</ul>
+<h3><a href="/home">TITLES</a></h3>
 
-<div id="music_list">
-    <img src="/assets/music/Levitate/levitate.jpg">
-    <img src="/assets/music/Trapnanana/trapnanana.jpg">
+<div class="music_list">
+    <ul>
+        <li *ngFor="let title of titles">{{title}}<i class='bx bx-plus' style='color:#ffffff'></i></li>
+    </ul>
 </div>
+
+
+
 
 <div class="display">
     <h3>title</h3>
@@ -20,6 +21,8 @@
         <i class="fa-solid fa-forward"></i>
     </div>
 </div>
+
+
 
 
 

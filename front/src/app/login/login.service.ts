@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Login } from './login';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { HttpClient, HttpContext, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { response } from 'express';
 
 
 
@@ -10,10 +12,12 @@ import { HttpClient, HttpContext, HttpErrorResponse, HttpHeaders, HttpParams } f
 
 })
 export class LoginService {
-
   url = "http://localhost:3000/auth/login";
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
 
   private handleError(error: HttpErrorResponse) {
@@ -31,11 +35,29 @@ export class LoginService {
     const headers = new HttpHeaders ({ 
       'content-type': 'application/json',
     });
-
     const response = this.http.post<Login>(this.url, JSON.stringify({ email, password }), {'headers': headers, withCredentials: true}).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError),
+      tap(response => {
+        if (response && response.token) {
+          localStorage.setItem('token', response.token)
+        }
+      })
     );
+    console.log(response);
     return response;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  public isLoggedIn(): boolean {
+    let token = localStorage.getItem('token');
+    return token != null && token.length > 0;
   }
 }
 

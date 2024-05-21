@@ -65,6 +65,38 @@ img:hover {
 
 }
 
+#break {
+    width: 200px;
+    height: 1px;
+    background-color: rgb(194, 194, 194);
+}
+
+ul > * {
+    list-style-type: none;
+    margin: 20px;
+}
+
+ul {
+    position: relative;
+    top: 100px;
+}
+
+.music_list {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+li > * {
+    margin: 10px;
+}
+i:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 390px) {
 
     .display {
