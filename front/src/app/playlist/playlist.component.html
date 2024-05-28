@@ -6,8 +6,8 @@
         <li *ngFor="let playlist of playlists">
             {{playlist}}
             <hr>
-            <i class="fa-solid fa-pen" (click)="updateList()"></i>
-            <i class="fa-solid fa-trash" (click)="deleteList()"></i>
+            <i class="fa-solid fa-pen" (click)="updateList(playlist)"></i>
+            <i class="fa-solid fa-trash" (click)="deleteList(playlist)"></i>
         </li>
     </ul>
 </div>

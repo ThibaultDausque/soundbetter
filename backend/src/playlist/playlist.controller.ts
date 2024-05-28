@@ -1,10 +1,13 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
+  Param,
   Post,
+  Put,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -21,7 +24,6 @@ export class PlaylistController {
   @UseGuards(JwtAuthGuard)
   @Post('newPlaylist')
   async newPlaylist(@Body() playlistDto: createPlaylistDto, @Req() req: any) {
-    console.log(req.user);
     return this.playlistService.createOne(playlistDto, req.user.id);
   }
 
@@ -29,5 +31,47 @@ export class PlaylistController {
   @Get('playlists')
   async find(): Promise<Playlist[]> {
     return this.playlistService.findAll();
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(JwtAuthGuard)
+  @Delete('deletePlaylist/:playlistTitle')
+  async deletePlaylist(@Param('playlistTitle') playlistTitle: string) {
+    try {
+      await this.playlistService.deletePlaylist(playlistTitle);
+      return {
+        success: true,
+        message: 'Playlist delete successfully',
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(JwtAuthGuard)
+  @Put('updatePlaylist/:playlistTitle')
+  async updatePlaylist(
+    @Param('playlistTitle') oldPlaylistTitle: string,
+    @Body('playlistTitle') newPlaylistTitle: string,
+  ) {
+    try {
+      await this.playlistService.updatePlaylist(
+        newPlaylistTitle,
+        oldPlaylistTitle,
+      );
+      return {
+        success: true,
+        message: 'Playlist updated successfully',
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
   }
 }

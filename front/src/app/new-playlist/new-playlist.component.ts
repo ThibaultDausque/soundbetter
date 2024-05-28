@@ -29,13 +29,15 @@ export class NewPlaylistComponent implements OnInit {
 
   onSubmit() {
     this.playlistService.postPlaylist(this.playlistForm.value).subscribe({
-      next: () => {
-        alert('Playlist created !');
+      next: response => {
+        console.log('created successful', response);
       },
-      error: () => {
-        alert('retry');
+      error: error => {
+        console.error('Error creating playlist', error);
       }
+
     });
+    console.log(this.playlistForm.value);
   }
 
 }

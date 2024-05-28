@@ -1,3 +1,5 @@
 <p>Update playlist title</p>
-<input type="text" placeholder="update title">
-<button>Update</button>
+<form [formGroup]="playlistForm">
+    <input type="text" placeholder="update title" formControlName="playlistTitle">
+    <button (click)="updatePlaylist()">Update</button>
+</form>

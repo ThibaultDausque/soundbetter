@@ -11,6 +11,8 @@ import { RegisterComponent } from './register/register.component';
 import { CommonModule } from '@angular/common';
 import { MusicComponent } from './music/music.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteComponent } from './components/delete/delete.component';
+import { UpdateComponent } from './components/update/update.component';
 
 
 
@@ -21,6 +23,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     LoginComponent,
     RegisterComponent,
     MusicComponent,
+    DeleteComponent,
+    UpdateComponent
     
   ],
   imports: [

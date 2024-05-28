@@ -34,4 +34,23 @@ export class PlaylistService {
   async findAll(): Promise<Playlist[]> {
     return this.playlistRepository.find();
   }
+
+  async deletePlaylist(playlistTitle: string): Promise<void> {
+    await this.playlistRepository.delete({ playlistTitle });
+  }
+
+  async updatePlaylist(
+    newPlaylistTitle: string,
+    oldPlaylistTitle: string,
+  ): Promise<void> {
+    const playlist = await this.playlistRepository.findOne({
+      where: { playlistTitle: oldPlaylistTitle },
+    });
+    if (playlist) {
+      playlist.playlistTitle = newPlaylistTitle;
+      await this.playlistRepository.save(playlist);
+    } else {
+      throw new Error('Playlist not found');
+    }
+  }
 }

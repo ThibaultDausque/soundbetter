@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
 
     this.loginService.postLogin(formValue.email, formValue.password).subscribe({
       next: () => {
-        alert('Login successful');
         this.router.navigate(['/home']);
       },
       error: () => {

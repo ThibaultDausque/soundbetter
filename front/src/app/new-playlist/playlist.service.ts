@@ -26,7 +26,6 @@ export class PlaylistService {
   postPlaylist(playlistTitle: newPlaylist): Observable<newPlaylist> {
     const headers = new HttpHeaders ({
       'content-type': 'application/json',
-      'Accept': 'application/json'
     }).set('Authorization', `Bearer ${this.loginService.getToken()}`);
 
     const body = JSON.stringify(playlistTitle);
@@ -34,7 +33,5 @@ export class PlaylistService {
       .pipe(
         catchError(this.handleError)
       );
-
-
   }
 }

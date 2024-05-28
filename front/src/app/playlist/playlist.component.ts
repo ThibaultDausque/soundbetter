@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PlaylistService } from './playlist.service';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,6 +15,7 @@ import { DeleteComponent } from '../components/delete/delete.component';
 export class PlaylistComponent {
 
   playlists!: string[];
+  selectedPlaylist!: string;
 
   constructor(private playlistService: PlaylistService, private dialog: MatDialog) {
     this.fetchPlaylist();
@@ -26,17 +27,22 @@ export class PlaylistComponent {
     })
   }
 
-  updateList() {
+  updateList(playlist: string) {
+    this.selectedPlaylist = playlist;
     this.dialog.open(UpdateComponent, {
       width: '400px',
-      height: '400px'
+      height: '400px',
+      data: { playlist: this.selectedPlaylist }
     });
   }
 
-  deleteList() {
+  deleteList(playlist: string) {
+    this.selectedPlaylist = playlist;
+    console.log(playlist);
     this.dialog.open(DeleteComponent, {
       width: '400px',
-      height: '400px'
+      height: '400px',
+      data: { playlist: this.selectedPlaylist }
     });
   }
 }
