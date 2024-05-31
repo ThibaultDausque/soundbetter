@@ -47,15 +47,15 @@ export class LoginService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage?.removeItem('token');
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage?.getItem('token');
   }
 
   public isLoggedIn(): boolean {
-    let token = localStorage.getItem('token');
+    let token = localStorage?.getItem('token');
     return token != null && token.length > 0;
   }
 }
