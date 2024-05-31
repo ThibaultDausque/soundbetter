@@ -6,9 +6,11 @@ services:
     container_name: frontend
     image: frontend:latest
     restart: unless-stopped
+    env_file:
+      - .env
     build: ./front
     ports:
-      - "4200:4200"
+      - ${FRONT_CLIENT_PORT}:${FRONT_CLIENT_PORT}
     environment:
       - STYLE=css
     volumes:
@@ -19,12 +21,14 @@ services:
   backend:
     container_name: backend
     image: backend:latest
+    env_file:
+      - .env
     depends_on:
       - postgresdb
     build: ./backend
     command: "npm run start:dev"
     ports:
-      - "3000:3000"
+      - ${BACK_CLIENT_PORT}:${BACK_CLIENT_PORT}
     volumes:
       -  ./backend:/app/src 
     stdin_open: true
@@ -34,24 +38,28 @@ services:
     container_name: postgres_drive
     image: postgres:latest
     restart: unless-stopped
+    env_file:
+      - .env
     volumes:
       - ./database/:/docker-entrypoint-initdb.d/
       - db:/var/lib/postgresql/data
     ports:
-      - "5433:5432"
+      - ${DOCKER_DB_PORT}:${CLIENT_DB_PORT}
     environment:
-      - POSTGRES_DB=my_database
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
 
   adminer:
     image: dpage/pgadmin4
     container_name: pgadmin
+    env_file:
+      - .env
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=adminpassword
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
     ports:
-      - "8081:80"
+      - ${DOCKER_ADMINER_PORT}:${CLIENT_ADMIN_PORT}
     depends_on:
       - postgresdb
    

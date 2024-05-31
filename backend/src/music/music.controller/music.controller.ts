@@ -8,7 +8,10 @@ export class MusicController {
   constructor(private musicService: MusicService) {}
   @UseGuards(JwtAuthGuard)
   @Get('musics')
-  async findOne(): Promise<Music[]> {
+  async findAll(): Promise<Music[]> {
     return this.musicService.findAll();
   }
 }
+
+
+

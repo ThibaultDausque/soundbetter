@@ -12,20 +12,26 @@ import { PlaylistModule } from './playlist/playlist.module';
 import { Music } from './music/entities/music.entity';
 import { Playlist } from './playlist/entities/playlist.entity';
 import { Album } from './album/entities/album.entity';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres', //driver protocole propriétaire
-      host: 'localhost',
-      port: 5433,
-      username: 'myuser',
-      password: 'mypassword',
-      database: 'my_database',
-      entities: [User, Music, Playlist, Album],
-      synchronize: false,
-      autoLoadEntities: true,
-      logging: true,
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (ConfigService: ConfigService) => ({
+        type: 'postgres', //driver protocole propriétaire
+        host: ConfigService.get<string>('DB_HOST'),
+        port: ConfigService.get<number>('DB_PORT'),
+        username: ConfigService.get<string>('DB_USERNAME'),
+        password: ConfigService.get<string>('DB_PASSWORD'),
+        database: ConfigService.get<string>('DB_NAME'),
+        entities: [User, Music, Playlist, Album],
+        synchronize: false,
+        autoLoadEntities: true,
+        logging: true,
+      }),
+      inject: [ConfigService],
     }),
     UserModule,
     AuthModule,
