@@ -32,10 +32,9 @@ export class UpdateComponent {
   }
 
   updatePlaylist() {
-    console.log(this.data);
-    const oldPlaylistTitle = this.data?.playlist;
+    const oldPlaylistTitle = this.data.playlist;
     const newPlaylistTitle  = this.playlistForm.value;
-    console.log(oldPlaylistTitle);
+    console.log(newPlaylistTitle);
     this.updateService.updatePlaylist(oldPlaylistTitle, newPlaylistTitle).subscribe({
       next: response => {
         console.log('updated successful', response);

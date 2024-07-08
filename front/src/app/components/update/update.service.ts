@@ -29,10 +29,8 @@ export class UpdateService {
 
         const encodedTitle = encodeURIComponent(oldPlaylistTitle);
         const url = 'http://localhost:3000/updatePlaylist/' + encodedTitle;
-
         console.log(url);
-
-        return this.http.put<newPlaylist>(this.baseURL + `updatePlaylist/${oldPlaylistTitle}`, { newPlaylistTitle }, { headers })
+        return this.http.put<newPlaylist>(url, { newPlaylistTitle }, { headers })
             .pipe(
                 tap(() => console.log(`Sent request to update playlist: ${oldPlaylistTitle}`)),
                 catchError(this.handleError)
